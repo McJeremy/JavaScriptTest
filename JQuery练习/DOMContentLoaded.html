@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <title> new document </title>
+  <meta name="generator" content="editplus" />
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <script type="text/javascript" src="jquery-1.4.2.min.js"></script>
+  <script type="text/javascript">
+
+	window.addEventListener('load',function(){
+				$('#s1').text($('#s1').text()+'DOM内容加载完成。');
+	},false);
+
+	window.onload=function(){
+		$('#s1').text($('#s1').text()+'DOM内容加载完成。');
+	};
+
+	$(function(){
+		$('#s1').text($('#s1').text()+'Dom结构加载完成。');
+	});
+
+	
+  </script>
+ </head>
+ <body>
+	<span id="s1"></span>
+	<table id="tb">
+		<tr>
+			<th>名称</th>
+			<th>类型</th>
+			<th>操作</th>
+		</tr>
+		
+	</table>
+ </body>
+</html>

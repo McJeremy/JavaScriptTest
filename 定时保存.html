@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <title> new document </title>
+  <meta name="generator" content="editplus" />
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <script type="text/javascript">
+
+	window.onload=function(){
+
+		var txtObj = document.getElementById('txt1');
+		var spanObj = document.getElementById('s1');
+
+		//自动保存
+		txtObj.addBehavior("#default#userData");
+
+		var saveTimer= setInterval(function(){
+			txtObj.setAttribute('OValue',txtObj.value);
+			txtObj.save('SavedData');
+
+			spanObj.innerText='数据保存于：'+(new Date());
+			setTimeout(function(){
+				spanObj.innerText='';
+			},1000);
+
+		},10000); //每分钟保存一次
+
+		document.getElementById('btn1').attachEvent('onclick',function(){
+			clearInterval(saveTimer); //取消保存
+			txtObj.removeAttribute('OValue');
+		});
+
+		document.getElementById('btn2').attachEvent('onclick',function(){
+			txtObj.load('SavedData');
+			alert(txtObj.getAttribute('OValue'));
+			//txtObj.value = txtObj.getAttribute('OValue');
+		});
+	};
+
+  </script>
+ </head>
+
+ <body>
+   
+     <span id="s1" style="color:red;"></span>
+	 <p />
+     <textarea height="500" style="height:500px;width:500px;" id="txt1">
+	 </textarea>
+<p />
+<input type="button" id="btn1" value="停止保存" />
+<input type="button" id="btn2" value="获取保存的值" />
+ </body>
+</html>

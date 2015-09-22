@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <title> new document </title>
+  <meta name="generator" content="editplus" />
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+ </head>
+
+ <body>
+   <script>
+  
+   /*prototype是对Object或其它对象,不能是实例*/
+ /*
+ var user=new Object();
+//user.prototype.test=function(){alert('a');}
+//Object.prototype.test=function(){alert('a');}
+user.name='xu';
+user.age='23';
+user.show=function(){alert('my name is :'+this.name);}
+user.show();
+//delete user.name;
+//上面的删除与 user.name=undefined; 效果一致
+*/
+
+/*对象申明
+var obj1={};
+
+function test(){};
+var obj2=new test();
+
+var obj3=new Object();
+*/
+
+/*
+Function.prototype.method=function(){alert('a');}   //对function而言,是一个静态的方法
+function test()
+{}
+test.method();
+test.method.method();
+*/
+
+/*
+Array.prototype.p=function(){alert('a');}
+function test()
+{
+   arguments.p();   //undefined,表示arguments并不是Array对象
+}
+var a=new Array();
+a.p();
+*/
+
+/*  一个对象的创建过程:
+一:碰到new时,创建一个空对象
+二:将函数的prototype属性对象的成员赋给这个空对象
+三:执行函数体,将函数体的成员赋给这个对象  ,也就是初始化操作
+   执行函数体的时候,会将其中的this指针都指向新建的对象;
+四:返回这个对象,并将引用传给所申明的变量
+
+function  class1()
+{
+  //构造函数
+  alert('a');
+}
+class1.prototype=
+{
+   'name':'xuzhize',
+   show:function(){alert(this.name);}
+}
+var obj=new class1();
+obj.show();
+*/
+   </script>
+ </body>
+</html>

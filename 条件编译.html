@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <title> new document </title>
+  <meta name="generator" content="editplus" />
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+ </head>
+
+ <body>
+   <script type="text/javascript">
+   /*  
+      注意:非条件编译的表达式或变量与@之间是有空格的．
+	  条件编译只在IE中，
+   */
+   //@cc_on
+   //@ document.write('js version:'+@_jscript_version);
+   //@if(@_jscript_version>5) ie6->5.6 ie7-8 ->5.8
+   //@ alert('a');
+   //@else
+   //@ alert('b');
+   //@end
+   
+   //@cc_on
+   //@ document.write('js version:'+@_jscript_version);
+   //@if(@_jscript_version>5)
+    alert('aa');  //这样写就兼容非IE浏览器
+   //@else
+    alert('bb');
+   //@end
+   
+   
+   /*@cc_on   //注意开始和结尾的两个@,且注意条件变量的@
+   @if (@_win32)
+      document.write("A:操作系统是32位windows。浏览器是IE。");
+   @else
+      document.write("操作系统不是32位windows。浏览器是IE。");
+   @end
+   @*/
+   
+   /*第一个注释语句都要有@,且要有对应的结尾 ?*/
+   
+/*@cc_on
+   @if (@_win32)
+      document.write("B:操作系统是32位windows。浏览器是IE。");
+   @else @*/
+      document.write("浏览器不是IE (如: Firefox)或者浏览器不是在32位windows下的IE。");
+   /*@end
+@*/
+
+
+   
+ 
+
+   </script>
+ </body>
+</html>

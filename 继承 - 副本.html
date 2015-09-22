@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <title> new document </title>
+  <meta name="generator" content="editplus" />
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+ </head>
+
+ <body>
+  <script>
+     var xuModule;
+(function (xuModule) {
+    var Module1 = (function () {
+        this.Name = 'xuzz';
+        this.Say = function () { alert(this.Name); }
+        return this;
+    })();
+    xuModule.Module1 = Module1;
+})(xuModule || (xuModule = {}));
+
+xuModule.Module1.Say();
+
+
+  </script>
+ </body>
+</html>
+

@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+
+<body>
+  <script type="text/javascript" language="javascript">
+
+    function getSPOpenDocumentObject()
+	{
+	   if(window.SharePointOpenDocuments)
+	   {
+	      return window.SharePointOpenDocuments;
+	   }
+	   else
+	   {
+	      //3 -office07  2-office03
+	      var spIDS=['SharePoint.OpenDocuments.3','SharePoint.OpenDocuments.2','SharePoint.OpenDocuments.1'];
+		  for(var i=0;i<spIDS.length;i++)
+		  {
+		     try
+			 {
+			    return (window.SharePointOpenDocuments=new ActiveXObject(spIDS[i]));
+			 }
+			 catch($e){}
+		  }
+	   }
+	}
+  </script>
+    <input type="button" id="btntest" value="开始编辑" />
+    <script type="text/javascript">
+
+	   document.getElementById('btntest').onclick=function(){
+	   var __OpenDocuments =getSPOpenDocumentObject();
+		  var url='http://cgnpc-pcitxzz:3456/Public/GPRS/prr/word/34000000/2009/2009-2.doc';
+  if(__OpenDocuments)
+		  {
+		    var result = __OpenDocuments.EditDocument( url , "Word.Document" );
+
+                   //__OpenDocuments.EditDocument(p1[,p2]);  p1:路径,p2,可先,打开类型
+				   //__OpenDocuments.ViewDocument(p1[,p2]); p1:路径,p2,可选,打开类型
+				   //__OpenDocuments.CreateNewDocument(模板路径,新文件存放路径(目录));
+            if( result == false )
+            {
+              alert( "无法打开文档." );
+            }
+		  }
+	   };
+	</script>
+</body>
+</html>

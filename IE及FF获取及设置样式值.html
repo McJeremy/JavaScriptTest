@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <title> new document </title>
+  <meta name="generator" content="editplus" />
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <style type="text/css">
+   #div2
+   {
+     width:200px;
+	 height:100px;
+	 margin-left:120px;
+	 border:1px dashed blue;
+   }
+   .testClassName
+   {
+     background:red;
+   }
+  </style>
+ </head>
+
+ <body>
+    <div id="div" style="width:100px;height:100px;border:1px solid red;float:left;">Div 1</div>
+	
+	<div id="div2" >Div 2</div>
+
+	<div id="testContent"></div>
+	<button id="btnGetClick">获取值</button>
+	<button id="btnUpdateClick">设置值</button>
+
+
+	<script type="text/javascript">
+	//<![CDATA[
+	  function $(obj)
+	  {
+	    return document.getElementById(obj);
+	  }
+	  function getStyle(obj,styleName)
+	  {	    
+	    if(obj.currentStyle) //for ies
+		{
+		  return obj.currentStyle[styleName];
+		}
+		else //for others
+		{
+		   return document.defaultView.getComputedStyle(obj,null).getPropertyValue(styleName);
+		   //return document.defaultView.getComputedStyle(obj,null)[styleName];
+		}
+	  }
+	  $('btnGetClick').onclick=function()
+	  {
+	      //直接写在tag上的为内嵌样式、写在head-style里的为内部样式、link引入的为外部样式
+		  //内嵌样式，可以通过Dom.style.样式名称获取，需要注意的是样式名称是驼峰格式
+		  //内部样式和外部样式通过style.样式名称是无法获取到的，需要通过currentStyle || getComputedStyle来获取
+		  //其实，这很好理解，内嵌样式的时候，tag具有style属性(该属性值返回的是object对象)，那我们就可以通过style.样式名称来获取
+		  //而内部或外部时，虽有style属性，但相应的值为空，所以就只有通过currentStyle || getComputedStyle来获取
+		  //alert($('div2').style); 可以看到，弹出的结果为object,说明style是存在的，只是其下的相应样式设置为空而已。
+		  
+	      $('testContent').innerHTML='';
+	      var str=$('div').style.styleFloat || $('div').style.cssFloat;  //因为float是保留词，因此，不能再 style.float，而用ies:styleFloat , ff:cssFloat
+		  str=str+($('div').style.width+'<br />');
+		  str=str+($('div2').style.width+' <br />'); //这一段无法获取到内部样式,显示空值,但并不是说style不存在
+		  str=str+($('div2').width+' <br />'); //返回undefined，因为没有为div2的dom设置width属性
+		  str=str+getStyle($('div2'),'width');		  //div2的样式是通过内部样式提供，因此通过currentStyle || getComputedStyle来获取
+		  $('testContent').innerHTML=str;
+	  }
+	  $('btnUpdateClick').onclick=function()
+	  {
+	     //设置样式时，不管是内嵌、内部还是外部，反正这3种方式，都可以获取到style属性（对象）
+		 //那就可以通过它为元素设置样式,设置样式的办法有以下3种
+	     $('div').style.width='200px';
+		 $('div2').style.width='100px';		
+		 $('div').style.cssText='background:blue;color:red;font-weight:bold;'; //将覆盖原来的定义,相当于定义 style="background:blue;font-size:red;font-weight:bold;"
+		 $('div2').className='testClassName'; //相当于设置 <div class="testClassName" />
+	  }
+	//]]>
+	</script>
+ </body>
+</html>

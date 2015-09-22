@@ -1,0 +1,21 @@
+﻿<html>
+ <body> 
+    <div id="test" onclick="testFun(event,'a')">testsafdasdf</div>
+ </body>
+ <script type="text/javascript">
+    function testFun(e,ar)
+	{
+	   var ev=e || window.event;
+	   alert(ar);
+	   if(ev.srcElement)
+	   {
+	   alert(ev.srcElement.tagName);
+	   }
+	   if(ev.target)
+	   {
+	    alert(ev.target.tagName);
+	   }
+	}
+   // document.getElementById('test').attachEvent('onclick',testFun);
+ </script>
+</html>

@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>无标题 1</title>
+</head>
+
+<body>
+<script type="text/javascript" language="javascript">
+
+  function DoReturn()
+  {
+    var rObj=window.dialogArguments;
+    if(typeof rObj!=='object')
+    { 
+       window.returnValue='您传送的参数没有被正确解析！';
+       window.close();
+    }
+    
+    var rValue='来源页面是：'+rObj.source;
+    rValue+='<br />作者是：'+rObj.author;
+    rValue+='<br />我的地址是：'+location.href;
+    
+    window.returnValue=rValue;
+    window.close();
+  }
+</script>
+
+   <h1>window.showModelessDialog方法的测试</h1>
+   
+    <h3>这是被打开的modelessDialog（模式对话框）</h3>
+ <div>
+   <input type="button" name="btnOpen" value="返回值给父窗口" onclick="javascript:DoReturn()" />
+ </div>
+
+</body>
+
+</html>

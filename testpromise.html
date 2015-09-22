@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <title> new document </title>
+  <meta name="generator" content="editplus" />
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <script type="text/javascript">
+		var arr = ['a','b','c'];
+		for(var j = 0,len=arr.length;j<len;j++)
+		{
+				alert(arr.shift());
+		}
+		
+		function promise(iniFn){
+			this.thens = [];
+
+			if(iniFn && typeof iniFn === 'function')
+			{
+					this.then(iniFn);
+			}
+		}
+
+		promise.prototype=
+		{
+			then : function(fn){
+				this.thens.push(fn);
+				return this;
+			},
+			resolve:function()
+			{
+				for( var i = 0,len= this.thens.length;i<len;i++)
+				{					
+						//this.thens[0].call(this);
+						this.thens.shift().call(this);
+						//this.thens[i].call(this);
+				}
+				//var next = this.thens.shift();
+				//next.apply(this,arguments);
+			}
+		}
+
+
+		function f1()
+		{
+			//var p = new promise();
+			
+			//setTimeout(function(){
+			//	alert(1);
+			//	p.resolve('abc');
+			//},1500);
+
+			//return p;
+
+			alert(1);
+		}
+
+		function f2()
+		{
+			/*
+			var p = new promise();
+
+			alert(txt);
+			
+			setTimeout(function(){
+				alert(2);
+				p.resolve('result');
+			},1000);
+
+			return p;
+			*/
+			alert(2);
+		}
+
+		function f3()
+		{
+			alert(3);
+		}
+
+		//f1().then(f2).then(f3);
+		new promise(f1).then(f2).then(f3).resolve();
+  </script>
+ </head>
+
+ <body>
+	
+ </body>
+</html>

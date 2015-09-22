@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>无标题 1</title>
+</head>
+
+<body>
+<!--
+javascript的作用域机制：词法作用域（lexcical scope）。通俗地讲，就是javascript变量的作用域是在定义时决定而不是执行时决定，
+也就是说词法作用域取决于源码，编译器通过静态分析就能确定，因此词法作用域也叫做静态作用域（static scope）。
+但需要注意，with和eval的语义无法仅通过静态技术实现，所以只能说javascript的作用域机制非常接近词法作用域（lexical scope）.
+javascript引擎在执行每个函数实例时，都会创建一个执行环境（execution context）。
+执行环境中包含一个调用对象（call object）, 调用对象是一个scriptObject结构（scriptObject是与函数相关的一套静态系统，与函数实例的生命周期保持一致），用来保存内部变量表varDecls、内嵌函数表funDecls、父级引用列表upvalue等语法分析结构（注意varDecls和funDecls等信息是在语法分析阶段就已经得到，并保存在语法树中。
+函数实例执行时，会将这些信息从语法树复制到scriptObject上）。
+
+词法作用域（lexical scope）是javascript的作用域机制，还需要理解它的实现方法，就是作用域链（scope chain）。
+作用域链是一个name lookup机制，首先在当前执行环境的scriptObject中寻找，没找到，则顺着upvalue到父scriptObject中寻找，
+一直lookup到全局调用对象（global object）。
+-->
+<script type="text/javascript" language="javascript">
+var arg=2;
+function funTest()
+{
+  alert(arg);
+  var arg=5; 
+}
+arg=10;
+funTest();
+/*
+  分析上面的函数，如果将funTest里的var arg=5去掉的话，是正常的。但加上，运行时弹出 "undefined"
+  原因如下：
+  在执行funTest时，即进入了funTest的作用域，js引擎在解释执行时，碰到变量名或者函数名时，会在当前作用域，
+  也就是funTest的scriptObject中查找变量或函数（很显然，arg在当前域里被定义为 var arg=5.所以alert的参数
+  采用的是当前作用域里的arg,但是，这个arg的定义出现在调用之后，因此是undefined,这段函数类似于如下：
+  var arg=2;
+function funTest()
+{
+  var arg; //声明而未定义，因此是undefined
+  alert(arg);
+  arg=5; 
+}
+arg=10;
+funTest();
+
+  ）。
+  当然，如果没有找到就到上层作用域查找，依此类推（作用域范围可以持续到javascript运行环境的根：window对象）。
+  因此，如果去掉var arg=5的话，js引擎在funTest域里没有找到arg的定义，它就会依据作用域链往上寻找。
+  而arg在全局作用域里是存在的。
+*/
+</script>
+</body>
+
+</html>

@@ -1,0 +1,8 @@
+*{border:0;font-family:sans-serif;font-size:1em;font-weight:400;font-style:normal;text-decoration:none;margin:0;padding:0}
+@font-face{font-family:Vegur;font-style:normal;font-weight:300;src:local('Vegur Light'),local(Vegur-Light),url(vegur-l-webfont.woff) format(woff)}
+body{background:#260930;overflow:hidden}
+
+#place{position:relative;width:1000px;height:560px;margin:0;overflow:scroll;}
+
+
+

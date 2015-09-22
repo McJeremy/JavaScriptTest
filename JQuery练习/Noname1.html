@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <title> new document </title>
+  <meta name="generator" content="editplus" />
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <script type="text/javascript" src="jquery-1.4.2.min.js"></script>
+  <script type="text/javascript">
+	$(function(){
+		/*
+		var tbTmp = $('#tbTemplate').get(0);
+
+		tbTmp.style.display='none';
+
+		for(var i=0;i<10000;i++)
+		{
+			  var row = document.createElement( "TR" ); 
+		　    tbTmp.appendChild( row ); 
+		　    for (var j=0; j<4; j++) 
+		　    {  
+		　　    cell = document.createElement( "TD" ); 
+		　　    row.appendChild( cell ); 
+		　　    var html = "<input type='checkbox' name='chk"+i+"-"+j +"'>";
+				html += "<input type='text' name='txt"+i+"-"+j +"' value='"+i+"-"+j +"'>";
+				cell.innerHTML = html;
+		　    } 
+		}
+				tbTmp.style.display='';
+
+*/
+
+			//	alert($('#t1,#t2').val());
+				//alert($('#t3').length);
+
+/*
+		:has(table)：找到具有子table的元素，加上:not(:has(table))就是找到所有没有
+				$('#div5 table:not(:has(table))').each(function(i,o){
+					alert(o.id);
+				});
+				*/
+
+/*
+		table table  : 找到所有具有父级table的table， 加上:not(table table)，就是找到所有没有父级table的table
+				$('#div5 table:not(table table)').each(function(i,o){
+					alert(o.id);
+				});
+				*/
+
+				$('#div5 table table').each(function(i,o){ alert(o.id); });
+
+	}); 
+</script>
+ </head>
+ <body>
+
+	<div id="tbContainer">
+	</div>
+
+	<table id="tbTemplate" border="1" style="border-collapse:collapse;width:800px;">
+		<tr>
+			<th>一</th>			<th>二</th>			<th>三</th>			<th>四</th>
+		</tr>
+	</table>
+
+	<input type="text" id='t1' value='2' />
+		<input type="text" id='t2' value='3' />
+
+
+	<div id="div5">
+		<table id='t1'>
+			<tr>
+				<td>
+					<table id='t3'>
+						<tr><td>
+							<table id='t4'>
+								<tr><td></td></tr>
+							</table>
+						</td></tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<table id='t2'>
+		</table>
+	</div>
+ </body>
+</html>
+

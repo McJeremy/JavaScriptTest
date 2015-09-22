@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>无标题 1</title>
+</head>
+
+<body>
+<script type="text/javascript" language="javascript">
+  function OpenPage()
+  {
+     var args={};
+     args.source='default.html';
+     args.author='pcitxzz';
+     
+    // var rValue=window.showModalDialog('dialog.html',args,'dialogWidth=500px;dialogHeight=300px;');
+     var rValue=window.showModelessDialog('dialog.html',args,'dialogWidth=500px;dialogHeight=300px;');
+     rValue=typeof rValue==='undefined'?'没有接收到值':rValue;
+     callbackPage(rValue);
+  }
+  function callbackPage(rValue)
+  {
+    if(document.getElementById('divRValue'))
+    {
+      document.getElementById('divRValue').innerHTML=rValue;
+    }
+  }
+</script>
+
+ <h1>window.showModelessDialog方法的测试</h1>
+ <div>
+   <input type="button" name="btnOpen" value="打开对话框" onclick="javascript:OpenPage()" />
+ </div>
+ <h3>下面是打开的对话框返回的值：</h3>
+ <div id="divRValue" style="height:100%;border:1px dashed ble;"></div>
+</body>
+
+</html>

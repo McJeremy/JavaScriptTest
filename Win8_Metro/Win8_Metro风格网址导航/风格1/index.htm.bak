@@ -1,0 +1,28 @@
+﻿
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<link rel="shortcut icon" href="favicon.ico"/>
+		<link rel="apple-touch-icon-precomposed" href="images/win8.png">
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<script type="text/javascript" src="js/jquery-1.6.1.min.js"></script>
+		<script type="text/javascript" src="js/config.js"></script>
+		<style type="text/css">
+			div.blockwrapper{width:975px;height:480px;position:absolute;top:80px;}
+			div.blockname{font-family:'Open Sans',Arial,Helvetica,sans-serif;font-size:40px;width:970px;color:#fff;position:absolute;top:0}
+			div.blocknav{width:215px;height:103px;border:1px solid red;margin-bottom:5px;}
+		</style>
+ 		<script type="text/javascript">
+
+			$(document).ready(function() {
+				$('#place').metroNav();
+			});
+
+		</script>		
+	</head>
+	<body>
+		<div id="place" >
+		</div>
+	</body>
+</html>

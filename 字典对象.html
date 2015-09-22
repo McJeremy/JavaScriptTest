@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <title> new document </title>
+  <meta name="generator" content="editplus" />
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+ </head>
+
+ <body>
+   <script type="text/javascript">
+    try
+	{
+      var dic=new ActiveXObject('Scripting.Dictionary');   
+	  //add来添加
+	  dic.Add('t1','xu');
+	  dic.Add('t2','zhi');
+	  dic.Add('t3','zhe');
+      //item来修改	  
+	  dic.Item('t3')='ze';
+	  //获取所有键
+	  var keys=dic.Keys().toArray();
+	  //alert(keys.length);
+	  for(var i=0;i<keys.length;i++)
+	  {
+	     if(dic.Exists(keys[i]))
+		 {
+		    alert(dic.Item(keys[i]));
+			//dic.Items(keys[i])=null;
+			//dic.Remove(keys[i]);
+		 }
+	  }	  
+	}
+	catch($e)
+	{ 
+	  alert($e.message);
+	}
+   </script>
+ </body>
+</html>

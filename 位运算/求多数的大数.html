@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <title> new document </title>
+  <meta name="generator" content="editplus" />
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+ </head>
+
+ <body>
+   <script type="text/javascript" language="javascript">
+     function getMaxNum()
+	 {
+	    if(arguments.length<=1)
+		{ return arguments[0];}
+		var arg=arguments;	
+		var i=1;
+		var max=arg[0];
+		while(i<arg.length)
+		{
+		   max=(((max-arg[i])>>31)&1) == 0 ? max:arg[i];		
+		   ++i;		   
+		}		
+		return max;
+	 }
+	 
+	 document.write("10,-2,13中的大数是:"+getMaxNum(10,-2,13));
+   </script>
+ </body>
+</html>

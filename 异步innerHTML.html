@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>无标题 1</title>
+</head>
+
+<body>
+<script type="text/javascript" language="javascript">
+function asyncInnerHtml(html,callback)
+{
+  var temp=document.createElement("div"),
+      flag=document.createDocumentFragment();
+  temp.innerHTML=html;
+
+  (function(){
+    if(temp.firstChild)
+    {
+       flag.appendChild(temp.firstChild);
+        //caller 调用者
+        //callee 正在执行的
+         
+        setTimeout(arguments.callee,0);
+    }
+    else
+    {
+      callback(flag);
+    }
+  })();
+}
+var htmlStr = '<div><p>asdf1</p><p>asdf2</p></div><div>asdf3</div>'; 
+window.onload=function()
+{
+   asyncInnerHtml(htmlStr, function(fragment){document.body.appendChild(fragment);});
+   
+/*   var tflag=document.createDocumentFragment();
+   if(document.getElementById('test').firstChild)
+   {
+     tflag.appendChild(document.getElementById('test').firstChild);
+   }
+   alert(document.getElementById('test').firstChild.innerHTML);*/
+}
+
+
+
+</script>
+<ul id="test">
+<li>test1</li>
+<li>test2</li>
+<li>test3</li>
+</ul>
+</body>
+
+</html>

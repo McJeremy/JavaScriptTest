@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <title> new document </title>
+  <meta name="generator" content="editplus" />
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+ </head>
+
+ <body>
+  <script>
+     /*利用共享prototype继承*/
+	 /*
+	 function class1()
+	 {	 }
+	 function class2()
+	 {  }
+	 class2.prototype=class1.prototype;  
+	 //实际上,这里是赋予操作, 完成后,class1和class2的prototype都是同一个对象的引用,一个的更改会影响另一个
+	 //为什么呢?在JavaScript中,除了基本的数据类型(数字\字符串\布尔等),所有的赋值以及函数参数都是引用传递,而不是值传递
+	 class2.prototype.method=function(){alert('2');}  
+	 var c1=new class1();
+	 var c2=new class2();
+	 alert(c1 instanceof class1);  //true
+	 alert(c1 instanceof class2);  //true
+	 c1.method();
+	 c2.method();
+	 //上面弹出了2次'2',这说明,对class2的更改也影响到了class1,这显然是不合理的,
+
+	 因此,利用共享prototype是不合理的
+	 */
+
+	 /*利用反射+prototype来实现*/
+	 /*
+	 Function.prototype.inherit=function(baseClass)
+	 {
+	     var _cur=this;
+		 for(var p in baseClass.prototype)   //这就是反射 for ... in ....
+		 {
+		    if(_cur.prototype[p]==null)
+			   _cur.prototype[p]=baseClass.prototype[p];
+		 }
+	 }
+	 function class1()
+	 {	 }
+	 class1.prototype={method:function(){alert('class1');}};
+	 function class2()
+	 {  }
+     class2.inherit(class1);
+	 class2.prototype.method=function(){alert('class2');};
+	 var obj1=new class1();
+	 var obj2=new class2();
+	 obj1.method();
+	 obj2.method();
+     //上面的输出不再是同一个字符串了,这说明,class2继承自class1,但它的更改不会再影响到class1
+	 */
+
+	 /*命名空间的实现*/
+	 /*
+	 var myTools=new Object();  //myTools此时已经是实例化的对象了,不再有prototype属性对象
+	 myTools.AlertA=function(){};   //为myTools动态添加方法,  此时的方法在命名空间中将作对象使用
+//	 myTools.AlertA();   //
+	 myTools.AlertA.prototype=
+	 {
+	     test:function(){alert('A');}
+	 }
+	 var xxx=new myTools.AlertA();
+	 xxx.test();
+	 */
+
+	 /*prototype.js的继承实现*/
+
+	 Object.extend=function(destination,source)
+	 {
+	    for(var property in source)
+		{
+		   if(destination[property]!=null)
+		   {
+		      destination[property]=source[property];
+		   }
+		}
+	 }
+	 Object.prototype.extend=function(source)   //这个用于实例化的对象
+	 {
+	   Object.extend.apply(this,[this,source]);  
+	   //分析:将Object类的静态方法extend作为当前对象的成员之一 
+	   //而extend需要两个参数,因此,在apply的第二个参数中 以数组来传递这两个参数,因为apply传递参数可以通过数组,而一般函数是不行的。 
+	 }
+function class1(){
+      //构造函数      
+}
+class1.prototype={
+      age:"sss",
+      method:function(){
+           alert(1);
+      },
+      method2:function(){
+           alert("method2");
+      }
+}
+class1.show = function(){
+    alert("class1的静态方法");
+}
+
+//class2
+function class2(){
+      //构造函数
+}
+
+
+//以下实现继承
+Object.extend(class2,class1);  
+Object.extend(class2.prototype,class1.prototype); //继承常规的
+//覆盖定义class1中的method方法
+class2.prototype.method=function(){
+      alert(2);
+}
+var obj1=new class1();
+var obj2=new class2();
+obj1.method();
+obj1.method2();
+
+obj2.method();
+obj2.method2();
+
+
+  </script>
+ </body>
+</html>
+

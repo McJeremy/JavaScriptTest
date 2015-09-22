@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>New Document </title>
+    <meta name="Generator" content="EditPlus">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <style type="text/css">
+        ul { list-style-type: none; list-style-position: outside; list-style-image: none; height: auto; }
+
+        li { float: left; margin-left: 10px; line-height: 22px; height: 22px; width: 100px; cursor: pointer; }
+
+            li.selected { border: 1px solid gray; }
+
+                li.selected i { display: inline-block; float: right; margin-top: 5px; margin-right: 5px; width: 13px; height: 13px; background-position: 0px 0px; visibility: visible; top: 4px; right: 3px; background-image: url("http://img04.taobaocdn.com/tps/i4/T1eGw8XfdbXXbhEZ6Z-165-175.png"); background-attachment: scroll; background-repeat: no-repeat; }
+    </style>
+
+    <script type="text/javascript" src="jquery-1.4.2.min.js"></script>
+
+    <script type="text/javascript">
+        ( function ( $ )
+        {
+            //@param {json} options 配置参数
+            //@param {json[]} items 初始化
+            $.fn.idSelect = function ( options, items, inits )
+            {
+                var defaults =
+				{
+				    'type': 'checkbox',			//类型：checkbox或radio
+				    'idField': 'id',			//
+				    'min': 0,					//最少选择1个，如果是0则表示可以不选
+				    'max': 3						//最多选择3个
+				}
+
+                if ( this[0].tagName.toLowerCase() != 'ul' )
+                {
+                    throw '只能使用ul元素作为选择容器。';
+                    return;
+                }
+
+                return this.each( function ()
+                {
+
+                    var settings = $.extend( defaults, options );
+
+                    var _this_ = $( this );
+
+                    function toggleState()
+                    {
+                        var _lithis_ = this;
+
+                        if ( _lithis_.hasClass( 'selected' ) )			//取消选中
+                        {
+                            if ( settings.min == 0 || $( 'li.selected' ).length >= ( settings.min + 1 ) )
+                            {
+                                _lithis_.removeClass( 'selected' ).removeAttr( 'checked' );
+                                $( 'i', _lithis_ ).remove();
+                            }
+                        }
+                        else				//选中
+                        {
+                            if ( settings.max == 0 || $( 'li.selected' ).length < settings.max )
+                            {
+                                _lithis_.attr( { 'class': 'selected', 'checked': 'checked' } );
+                                var i = $( '<i />' );
+                                _lithis_.append( i );
+                            }
+                        }
+
+                        if ( settings.type == 'radio' )
+                        {
+                            _lithis_.attr( 'cur', '' );
+                            $( 'i', 'li.selected:not([cur])' ).remove();
+                            $( 'li.selected:not([cur])' ).removeClass( 'selected' ).removeAttr( 'checked' );
+                            _lithis_.removeAttr( 'cur', '' );
+                        }
+
+                        if ( typeof settings.click == 'function' )
+                        {
+                            settings.click.apply( _lithis_ );
+                        }
+                    }
+
+                    if ( items && items.length > 0 )
+                    {
+                        $.each( items, function ( i, item )
+                        {
+                            if ( item.hasOwnProperty( 'text' ) )
+                            {
+                                var li = $( '<li>' + item['text'] + '</li>' ).attr( item );
+                                _this_.append( li );
+                            }
+                        } );
+                    }
+
+                    _this_.delegate( 'li', 'click', function ()
+                    {
+
+                        toggleState.apply( $( this ) );
+
+                    } );
+
+                    if ( inits && inits.length > 0 )
+                    {
+                        $.each( inits, function ( i, init )
+                        {
+                            toggleState.apply( $( 'li[' + settings.idField + '=' + init + ']', _this_ ) );
+                        } );
+                    }
+
+                } );
+            }
+
+            $.fn.idSelectResults = function ()
+            {
+                return this.each( function ()
+                {
+
+                } );
+            }
+        } )( jQuery );
+
+
+        $( function ()
+        {
+            $( 'ul' ).idSelect( {
+                'click': function ()
+                {
+                    if ( this.attr( 'checked' ) )
+                    {
+                        //alert(this.html());
+                    }
+                }
+            }, [
+				{ 'text': 'china', 'name': 'xu', 'id': '1' },
+				{ 'text': 'china Sic', 'name': 'Jeremy', 'id': '2' }
+            ], [2] );
+
+        } );
+    </script>
+
+    
+
+</head>
+
+<body>
+    <ul>
+        <li>中国</li>
+        <li>世界</li>
+    </ul>
+
+</body>
+</html>

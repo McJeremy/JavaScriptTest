@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> New Document </title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+ </head>
+
+ <body>
+  <script type="text/javascript">
+	var Module = {};
+	Module.rootNamespace = this;
+	Module.version = '1.0';
+
+	//name  .ºÅ·Ö¸ô
+	Module.registerNamesapce = function(name,version){
+		var names = name.split('.');
+		var container = Module.rootNamespace;
+		for(var i=0;i<names.length;i++)
+		{
+			if(!container[names[i]])
+			{
+				container[names[i]] = {};
+			}
+			container = container[names[i]];
+		}
+		
+		Module.modules[name]=container ;    
+	};
+
+	Module.modules = {'Module':Module};
+
+	Module.registerNamesapce('McJeremy.Xu','2.0');
+
+	McJeremy.Xu.Say = function(){ alert('I am xu'); };
+
+	McJeremy.Xu.Say();
+  </script>
+ </body>
+</html>

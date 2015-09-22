@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>无标题 1</title>
+</head>
+
+<body>
+<!--
+Currying好像是函数式语言都有的一个特性，比如Perl,Python,Javascript。
+那么到底什么是Currying，我是在学习Closure时无意中接触到这个定义的，觉得很是有趣。
+先看看 Wiki 中的定义：
+Currying is the technique of transforming a function that takes multiple arguments 
+in such a way that it can be called as a chain of functions each with a single argument.
+大概的意思就是说，将拥有多个参数的函数Currying化为拥有单一参数的函数形式。
+下面举一个简单的例子说明Javascript中的Currying实现，一个简单的求和函数：
+柯里化有3个常见作用：1. 参数复用；2. 提前返回；3. 延迟计算/运行。
+1. “参数复用”上面已经展示过了，官员老婆的例子就是，无论哪个官员，都是需要一个合法老婆；通过柯里化过程，getWife()无需添加这个多余的“合法老婆”参数。
+2. “提前返回”，很常见的一个例子，兼容现代浏览器以及IE浏览器的事件添加方法。
+-->
+<script type="text/javascript" language="javascript">
+		
+	function math(fn)
+	{
+		var args = [].slice.call(arguments,1); 		
+		return function()
+		{
+			var newargs = args.concat([].slice.call(arguments));			
+			return fn.apply(null,newargs);
+		}
+	}
+			
+	function add(x,y)
+	{
+		return x+y;
+	}
+
+	alert(math(add,1,2,3)(4));
+
+</script>
+</body>
+
+</html>

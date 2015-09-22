@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>无标题 1</title>
+</head>
+
+<body>
+<!--
+//toString() 
+//当javascript需要将一个对象转换成字符串时调用该方法,如 "+"运算符，alert(),document.write()
+//默认的toString()提供的信息不多(object class形式)，所以创建自定义类时最好自定义toString()方法返回有意义的信息
+//定义toString()时，只能在对象上定义，而不能在实例上定义
+-->
+<script type="text/javascript" language="javascript">
+   var ob2 = new Object();
+   alert(ob2.toString()); //[object Object]
+
+function Person(name,age)
+{
+    this.getName = function(){ return name; };
+    this.getAge = function(){ return age; };
+}
+Person.prototype.toString = function()
+{
+    return "name:" + this.getName() + ",age:" + this.getAge();
+}
+var aPerson = new Person("Jack",30);
+alert(aPerson); //name:Jack,age:30
+
+//valueof() 
+//javascript 需要将一个对象转换成字符串之外的原始类型时，而且typeof(对象)===object
+//需要调用它,这个函数返回是能代表关键字this所引用的对象的值的数据
+//由于大多数对象没有相对应的原始值，因此默认的Object类定义的valueof方法
+//不执行任何转换，只返回调用它的对象
+var ob3 = new Object();
+alert(ob3.valueOf()); //[object Object]
+
+function Complex(r,i)
+{
+    this.real = r;
+    this.imaginary = i;
+}
+
+Complex.prototype.valueOf = function()
+{
+    return this.real;
+}
+
+var c = new Complex(2,4);
+alert(c+1); //3  自动调用valueOf
+
+String.prototype.valueOf = function()
+{
+return parseFloat(this);
+}
+alert("123abc" +1);  // 123abc1 ,因为typeof 123abc=='string'，而不是object,所以valueOf对它无效
+alert(new String("123abc") + 1); //124  
+
+</script>
+</body>
+</html>

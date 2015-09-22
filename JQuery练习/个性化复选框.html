@@ -1,0 +1,67 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>New Document </title>
+    <meta name="Generator" content="EditPlus">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <style type="text/css">
+      
+        .tag-style { border: 1px solid #e6e7e1; background-color: #f3f3f3; cursor: pointer; padding: 3px;}
+		.tag-style.sel { border: 1px solid #d3e8f2; padding-right: 25px; background: #ebf2f8 url("http://cdn-img.easyicon.cn/png/10843/1084329.gif") no-repeat right center; }
+		.tag-style input { width:0;height:0;margin:0;padding:0; }
+
+    </style>
+
+    <script type="text/javascript" src="jquery-1.4.2.min.js"></script>
+
+    <script type="text/javascript">
+
+        $( function ()
+        {
+
+			var tags = $( '.tag-style input' ) ;
+			tags.click(function ()
+			{
+				var me =  $( this );
+				var checked = me.attr( 'checked' );
+
+				var parent = me.parent();
+				if ( checked )
+				{
+					parent.addClass( 'sel' );
+				}
+				else
+				{
+					parent.removeClass( 'sel' );
+				}
+
+				tags.not(":checked").parent().removeClass( 'sel' );
+			} );
+        } );
+
+    </script>
+
+</head>
+
+<body>
+
+    <div style="clear: both; margin-top: 100px;">
+
+        <label class="tag-style"><input type="radio" name="a" t='1' />china</label>
+        <label class="tag-style"><input type="radio" name="a" t='2' />world</label>
+        <label class="tag-style sel"><input type="radio" checked name="a" t='3' />cccccc</label>
+		<label class="tag-style"><input type="radio" name="a" t='4' />china</label>
+        <label class="tag-style"><input type="radio" name="a" t='5' />world</label>
+        <label class="tag-style"><input type="radio" name="a" t='6' />cccccc</label>
+		<label class="tag-style"><input type="radio" name="a" t='7' />china</label>
+        <label class="tag-style"><input type="radio" name="a" t='8' />world</label>
+        <label class="tag-style"><input type="radio" name="a" t='9' />cccccc</label>
+		<label class="tag-style"><input type="radio" name="a" t='10' />china</label>
+        <label class="tag-style"><input type="radio" name="a" t='11' />world</label>
+        <label class="tag-style"><input type="radio" name="a" t='12' />cccccc</label>
+
+    </div>
+
+</body>
+</html>

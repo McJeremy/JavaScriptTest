@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> New Document </title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+ </head>
+
+ <body>
+  <script type="text/javascript">
+	var gods = [
+		'陈晓明','陈毓孟','程爱民','丁欢','郭斌','姜迎春',
+		'马吉龙','毛文超','潘文彬',	'王星',	'王勇',
+		'文京浩','吴晶晶','肖飞腾','徐海波','徐志泽',
+		'元霞',	'张敏强','张振','魏守国'
+	];
+
+	function getArrayItems(arr, num) {
+		var temp_array = [];
+		for (var index in arr) {
+			temp_array.push(arr[index]);
+		}
+		//取出的数值项,保存在此数组
+		var return_array = [];
+		for (var i = 0; i<num; i++) {
+			//判断如果数组还有可以取出的元素,以防下标越界
+			if (temp_array.length>0) {
+				//在数组中产生一个随机索引
+				var arrIndex = Math.floor(Math.random()*temp_array.length);
+				//将此随机索引的对应的数组元素值复制出来
+				return_array[i] = temp_array[arrIndex];
+				//然后删掉此索引的数组元素,这时候temp_array变为新的数组
+				temp_array.splice(arrIndex, 1);
+			} else {
+				//数组中数据项取完后,退出循环,比如数组本来只有10项,但要求取出20项.
+				break;
+			}
+		}
+		return return_array;
+	}
+
+	alert(getArrayItems(gods,10));
+  </script>
+ </body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> New Document </title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+ </head>
+
+ <body>
+  <script type="text/javascript">
+	/*
+		exec 和 match的区别：
+			1、exec是正则的方法 而 match是字符串的方法
+			2、exec返回第一个匹配的元素信息，如果有分组的话，则返回分组的信息
+			3、在不使用g的情况下，match只返回第一个匹配的信息，否则返回所有匹配的信息。
+		两者的返回结果都是数组
+	*/
+
+	var str = "cat1,cat2";
+
+	var reg1= /at/;				//不分组，不使用g的情况下，返回一样
+	alert(reg1.exec(str));		//at
+	alert(str.match(reg1));		//at
+
+
+	var reg = /at/g;			//不分组，使用g的情况下，
+	alert(reg.exec(str));		//exec 返回第一个，at 
+	alert(str.match(reg));		//返回全部, at,at
+
+	var reg2 = /(at)/;			//分组的情况下，返回一样
+	alert(reg2.exec(str));		//exec 返回第一个，at,at 
+	alert(str.match(reg2));		//返回全部, at,at
+  </script>
+ </body>
+</html>

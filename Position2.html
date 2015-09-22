@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>无标题 1</title>
+<script type="text/javascript" language="javascript" src="test.js"></script>
+<style type="text/css">
+*{
+	margin:0;
+	padding:0;
+}
+.testNewDiv
+{
+	border:1px dashed blue;
+	width:150px;
+	overflow:hidden;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+<script type="text/javascript" language="javascript">
+ function AddElement(parentObj)
+ {
+    var dynParams={relativeNode:parentObj,domTag:'div',domId:'newDiv',styleName:'testNewDiv',offsetLeftPx:50,offsetTopPx:0,content:'这是测试的',otherAttributes:[{attrName:'testatt',attrValue:'abc'}],eventRegisters:[{eventType:'mouseover',eventHandler: movf},{eventType:'click',eventHandler:fnHandler}]
+}
+ dynCreateDomObject(dynParams);
+ }
+ function fnHandler(ev)
+ {
+ alert('a');
+ }
+ function movf(ev)
+ {
+     var ev=ev||window.event;
+     var src=ev.srcElement || ev.target;
+     src.style.border='1px dashed red';
+ }
+</script>
+ <input type="button" id="test1" name="test1" value="Test" onclick="AddElement(this)" />
+</body>
+
+</html>

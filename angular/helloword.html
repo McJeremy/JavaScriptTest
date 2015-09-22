@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html  ng-app>
+	<head>
+		<title>AngularJS Hello!</title>
+		<script type="text/javascript" src="angular.min.js"></script>		
+	</head>
+	<body>
+		<div ng-init="yourname='xuzz'">
+			<input type="text" ng-model="yourname" id="txtName" place-holder="your name"/>
+			<h1> hello {{yourname}}!</h1>
+			<p ng-bind="yourname"></p>		
+		</div>
+		
+		<div data-ng-init="quality=5;cost=10">
+			<p>Total: ${{quality*cost}}
+		</div>
+		
+		<div ng-init="arr=[1,2,3,4,5]">
+			<p ng-repeat="obj in arr">
+				{{obj}}
+			</p>
+		</div>
+		
+		<div ng-init="person={name:'xuzz',age:30}">
+			<p>Name:{{person.name}}</p>
+			<p>Age:{{person.age}}</p>
+		</div>
+	</body>		
+</html>
+	

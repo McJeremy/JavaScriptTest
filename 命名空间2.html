@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> New Document </title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+ </head>
+
+ <body>
+  <script type="text/javascript">
+		var sapi = (function(){
+			var _modules = {};
+			var _version = '1.0';
+			return {
+				'NS':function(ns){
+					if( ns.charAt(0)=='.' || ns.charAt(ns.length-1)=='.' || ns.indexOf('..')!=-1 )
+					{
+						throw new Error('illgel namespace '+ ns);
+					}
+
+					var _container = sapi;
+					var nsParts = ns.split('.');
+					for(var i = 0;i<nsParts.length;i++)
+					{
+						_container[nsParts[i]] || ( _container[nsParts[i]] = {} );
+
+						/*
+						if(!_container[nsParts[i]])
+						{
+							_container[nsParts[i]] = {} ;
+						}
+						*/
+
+						_container = _container[nsParts[i]];
+					}
+
+					return _container;
+				}
+			};
+		})();
+//		sapi.NS('.Xu');
+		sapi.NS('Xu.Info').say=function(){alert('say from namespace sapi.Xu.Info');};
+		sapi.Xu.Info.say();
+  </script>
+ </body>
+</html>

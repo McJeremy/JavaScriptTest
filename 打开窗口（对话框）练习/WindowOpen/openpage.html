@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>无标题 1</title>
+</head>
+
+<body>
+<script type="text/javascript" language="javascript">
+function ReturnValue()
+{
+  
+  if(window.opener)
+  {
+    //alert(window.opener.document.location.href);
+    var rValue='';
+    rValue='来源:'+window.opener.document.location.href;
+    if(window.opener.document.getElementById('divRValue'))
+    {
+      window.opener.document.getElementById('divRValue').innerHTML=rValue;
+    }
+    else
+    {
+      alert('没有找到父窗口的对应元素！');
+    }
+  }
+}
+</script>
+
+<h1>新开窗口测试：window.open</h1>
+<div>
+  <input type="button" name="btnR" onclick="javascript:ReturnValue();" value="返回值" />
+</div>
+</body>
+
+</html>

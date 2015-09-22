@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <title> new document </title>
+  <meta name="generator" content="editplus" />
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <style type="text/css">
+	ul{ width:200px;list-style:none; }
+	li{ border:1px solid blue; margin:3px 3px;padding:3px;height:20px;cursor:pointer; }
+  </style>
+  <script type="text/javascript" src="jquery-1.4.2.min.js"></script>
+  <script type="text/javascript">
+	//McJeremy
+	//JS-DOM版
+	window.onload=function(){
+		document.getElementById('ul').onclick=function(e){
+			e = e || window.event;
+
+			var t = e.srcElement || e.target;
+			if(t.tagName.toLowerCase()!='li')
+			{
+				return;
+			}
+			alert(t.getAttribute('name'));
+
+			//停止冒泡，不再向上传递
+			//取消这一段，会发现，body的click事件也被触发了。
+			if(e.stopPropagation)
+			{
+				e.stopPropagation();
+			}
+			else
+			{
+				e.cancelBubble=true;
+			}
+		};
+
+		document.body.onclick=function(){
+			alert('body click');
+		}
+	};
+	
+	//jQuery版
+	$(function(){
+		
+		//bind版
+		$('ul').bind('click',function(e){
+			var t = e.srcElement || e.target;
+			if(t.tagName.toLowerCase()!='li')
+			{
+				return;
+			}
+			alert(t.getAttribute('name'));
+
+			//停止冒泡，不再向上传递
+			//取消这一段，会发现，body的click事件也被触发了。
+			if(e.stopPropagation)
+			{
+				e.stopPropagation();
+			}
+			else
+			{
+				e.cancelBubble=true;
+			}
+		});
+
+
+		//delegate版
+		$('ul').delegate('li','click',function(e){
+			alert($(this).attr('name'));
+			//停止冒泡，不再向上传递
+			//取消这一段，会发现，body的click事件也被触发了。
+			if(e.stopPropagation)
+			{
+				e.stopPropagation();
+			}
+			else
+			{
+				e.cancelBubble=true;
+			}
+		});
+
+
+		$('body').bind('click',function(){
+			alert('body click');
+		});
+
+	}); 
+</script>
+ </head>
+ <body>
+
+	<ul id="ul">
+		<li name='a'>1</li>
+		<li name='b'>2</li>
+		<li name='c'>3</li>
+		<li name='d'>4</li>
+		<li name='e'>5</li>
+		<li name='f'>6</li>
+		<li name='g'>7</li>
+		<li name='h'>8</li>
+		<li name='i'>9</li>
+	</ul>
+
+ </body>
+</html>
