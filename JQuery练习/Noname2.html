@@ -1,0 +1,44 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <title> new document </title>
+  <meta name="generator" content="editplus" />
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <script type="text/javascript" src="jquery-1.4.2.min.js"></script>
+  <script type="text/javascript">
+	$(function(){
+		var dom = document.getElementById('d');
+		//var width = document.getElementById('d').style.width;
+		var width= window.getComputedStyle(dom,null);
+
+		var width= (dom.currentStyle? dom.currentStyle : window.getComputedStyle(dom, null)).width;
+		//var tmp = $('#d').html();
+		//$('#d').html('');
+		//var width = $('#d').width();
+		///$('#d').html(tmp);
+		//alert(width);
+		//var width = $('#d').width();
+		alert(width);
+	}); 
+	window.onload=function(){
+		//var width = document.getElementById('d').scrollWidth;
+		var width = $('#d').width();
+
+		//alert(width);
+	}
+</script>
+ </head>
+ <body>
+		<table id="d" style="width:10cm;border:1px solid red;">
+			<tr>
+				<td><input type="text" style="width:1000px;" /></td>
+			</tr>
+		</table>
+		<!--<div id="d" style="width:100px;border:1px solid red;">
+			<input type="text" style="width:1000px;" />
+		</div>-->
+ </body>
+</html>
+

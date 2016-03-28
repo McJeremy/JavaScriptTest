@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <title> new document </title>
+  <meta name="generator" content="editplus" />
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+ </head>
+
+ <body>
+  <script type="text/javascript">
+
+		//方式一：
+		Object.prototype.clone=function()
+		{
+			var o;
+			var _this = this;
+			if(typeof _this == 'object')
+			{
+				if(_this === null)
+				{
+					o = null;
+				}
+				else if(_this instanceof Array)
+				{
+					o = [];
+					for(var i = 0;i<_this.length;i++)
+					{
+						o.push(_this[i].clone());
+					}
+				}
+				else 
+				{
+					o = {};
+					for(var x in _this)
+					{
+						o[x] = _this[x].clone();
+					}
+				}
+			}
+			else 
+			{
+				o = _this;
+			}
+			return o;
+		}
+
+		//方式2
+		Object.prototype.clone2=function()
+		{
+			var copy = (this instanceof Array)?[]:{};
+			for(var attr in this)
+			{
+					//如果不是自身的属性，而是继承而来的，则忽略
+				if(!this.hasOwnProperty(attr))
+				{
+					continue;
+				}
+				copy[attr] = typeof this[attr]==='object' ?  this[attr].clone(): this[attr];
+			}
+			return copy;
+		}
+
+		var x = {a:1};		
+
+		var y = x.clone();
+		y.a= 2;
+		alert(y.a +'-' +x.a);		//2-1   因为复制后，就是两个不同的对象
+
+		var y1 = x;
+		y1.a=2;
+		alert(y1.a +'-' +x.a);		//2-2  等号复制，其实只是x的引用。
+
+		var y3 = x.clone2();
+		y3.a=4;
+		alert(y3.a +'-' +x.a); //4-2 复制后，就是两个不同的对象
+  </script>
+ </body>
+</html>
